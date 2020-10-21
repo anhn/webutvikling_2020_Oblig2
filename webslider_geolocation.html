@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>	Example of a Web slider and a Geolocation in your webside</title>
+	<style>
+			.mySlides {display:none;}
+			#map {
+		        height: 400px;
+		        /* The height is 400 pixels */
+		        width: 800px;
+		        /* The width is the width of the web page */
+		    }
+	</style>
+</head>
+<body>
+		<main>	
+				<h1>This is the home page</h1>
+				<p>	Some parargraphs here ...</p>
+		</main>	
+		<section>
+				<h1>This is the Webslider section</h1>	
+		 		<img class="mySlides" src="img1.png" style="width:800px;height: 400px;">
+  				<img class="mySlides" src="img2.png" style="width:800px;height: 400px;">
+  				<img class="mySlides" src="img3.png" style="width:800px;height: 400px;">
+  				<img class="mySlides" src="img4.png" style="width:800px;height: 400px;">
+  				<button onclick="plusDivs(-1)">&#10094;</button>
+  				<button onclick="plusDivs(1)">&#10095;</button>
+		</section>
+
+		<section>
+			<h1>This is the Geolocation section</h1>
+		    <div id="map"></div>
+		</section>
+		<script>
+			var slideIndex = 1;
+			showDivs(slideIndex);
+
+			function plusDivs(n) {
+			  showDivs(slideIndex += n);
+			}
+
+			function showDivs(n) {
+			  var i;
+			  var x = document.getElementsByClassName("mySlides");
+			  if (n > x.length) {slideIndex = 1}
+			  if (n < 1) {slideIndex = x.length}
+			  for (i = 0; i < x.length; i++) {
+			    x[i].style.display = "none";  
+			  }
+			  x[slideIndex-1].style.display = "block";  
+			}
+		</script>
+
+		<script
+		      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=&v=weekly"
+		      defer>
+      	</script>
+		<script type="text/javascript">
+		      function initMap() {
+		        const uluru = { lat: -25.344, lng: 131.036 };
+		        const map = new google.maps.Map(document.getElementById("map"), {
+		          zoom: 4,
+		          center: uluru,
+		        });
+		        const marker = new google.maps.Marker({
+		          position: uluru,
+		          map: map,
+		        });
+		      }
+		</script>
+</body>
+</html>
